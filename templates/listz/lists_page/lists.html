@@ -1,0 +1,97 @@
+{% extends 'listz/base.html' %}
+{% load static %}
+{% block head_link %}
+<link rel="stylesheet" href="{% static 'css/lists.css' %}">
+<link rel="stylesheet" href="{% static 'css/lists_by_editor.css' %}">
+<link rel="stylesheet" href="{% static 'css/slider.css' %}">
+<link rel="stylesheet" href="{% static 'css/movie_card.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'listz/banner.html' %}
+<div class="filterrow" id="filter-row">
+  <button >Filter row</button>
+</div>
+<div class="grid_view" id="grid_view">
+  <div class="container" id="cat_container">
+    <div class="grid" id="cat_grid">
+      <div class="category_box" id="by-editor">
+        <div class="cat_header">
+          <a href="{% url 'lists-by-editor' %}">
+            <h2 id="category_header">by editor</h2>
+          </a>
+        </div>
+        <div class="gradienter"></div>
+      </div>
+      <div class="category_box" id="publiclist">
+        <div class="cat_header">
+          <a href="{% url 'lists-from-public' %}" id="lists-public-button">
+            <h2 id="category_header">public</h2>
+          </button>
+        </div>
+        <div class="gradienter"></div>
+      </div>
+      <div class="category_box" id="commonlist">
+        <div class="cat_header">
+          <a href="{% url 'lists-common' %}">
+            <h2 id="category_header">common</h2>
+          </a>
+        </div>
+        <div class="gradienter"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+  var images = ["{% static 'images/lists_category_images/by_editor/by_editor.jpg' %}",
+    "{% static 'images/lists_category_images/by_editor/by_editor_2.jpg' %}",
+    "{% static 'images/lists_category_images/by_editor/by_editor_3.png' %}",
+    "{% static 'images/lists_category_images/by_editor/by_editor_4.jpg' %}",
+    "{% static 'images/lists_category_images/by_editor/by_editor_5.jpg' %}",
+    "{% static 'images/lists_category_images/by_editor/by_editor_6.png' %}",
+  ];
+
+  $('<img class="cat_img" src="' + images[Math.floor(Math.random() * images.length)] + '">').appendTo('#by-editor');
+</script>
+<script>
+  var images = ["{% static 'images/lists_category_images/personal/personal_1.jpg' %}",
+    "{% static 'images/lists_category_images/personal/personal_2.jpg' %}",
+    "{% static 'images/lists_category_images/personal/personal_3.jpg' %}",
+    "{% static 'images/lists_category_images/personal/personal_4.jpg' %}",
+    "{% static 'images/lists_category_images/personal/personal_5.png' %}",
+    "{% static 'images/lists_category_images/personal/personal_6.jpg' %}",
+  ];
+
+  $('<img class="cat_img" src="' + images[Math.floor(Math.random() * images.length)] + '">').appendTo('#personallist');
+</script>
+<script>
+  var images = ["{% static 'images/lists_category_images/public/public_1.jpg' %}",
+    "{% static 'images/lists_category_images/public/public_2.jpg' %}",
+    "{% static 'images/lists_category_images/public/public_3.jpg' %}",
+    "{% static 'images/lists_category_images/public/public_4.jpg' %}",
+    "{% static 'images/lists_category_images/public/public_5.jpg' %}",
+    "{% static 'images/lists_category_images/public/public_6.jpg' %}",
+  ];
+
+  $('<img class="cat_img" src="' + images[Math.floor(Math.random() * images.length)] + '">').appendTo('#publiclist');
+</script>
+<script>
+  id = "category_header"
+  var images = ["{% static 'images/lists_category_images/common/common_1.jpg' %}",
+    "{% static 'images/lists_category_images/common/common_2.jpg' %}",
+    "{% static 'images/lists_category_images/common/common_3.jpg' %}",
+    "{% static 'images/lists_category_images/common/common_4.jpg' %}",
+    "{% static 'images/lists_category_images/common/common_5.jpg' %}",
+    "{% static 'images/lists_category_images/common/common_6.jpg' %}",
+  ];
+
+  $('<img class="cat_img" src="' + images[Math.floor(Math.random() * images.length)] + '">').appendTo('#commonlist');
+</script>
+
+
+{% endblock %}

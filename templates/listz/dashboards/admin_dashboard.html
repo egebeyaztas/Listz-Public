@@ -1,0 +1,75 @@
+{% extends "listz/base.html" %}
+{% load static %}
+{% block head_link %}
+<link rel="stylesheet" href="{% static 'css/lists.css' %}">
+<link rel="stylesheet" href="{% static 'css/lists_by_editor.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}" />
+<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}" />
+<link rel="stylesheet" href="{% static 'css/slider.css' %}">
+<link rel="stylesheet" href="{% static 'css/movie_card.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="grid" id="grid">
+
+    {% for movie in movies %}
+    <div class="col img-block">
+        <div class="movie-card">
+
+            <div id="movie-img" class="movie-img">
+                {% if movie.Poster_url %}
+                <img id="ajax_img" src="{{movie.Poster_url}}">
+                {% else %}
+                <img id="ajax_img" src="{% static 'images/final_placeholder.jpg' %}">
+                {% endif %}
+                <div class="overlay_row">
+                    <div class="text-movie-cont">
+                        <div class="mr-grid">
+                            <div class="col1">
+                                <h1 id="ajax_title">{{movie.Title}}</h1>
+                                <ul class="movie-gen">
+                                    <li>{{movie.get_countries}} /</li>
+                                    <li>{{movie.Runtime}} min /</li>
+                                    <li>{{movie.get_genres}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mr-grid summary-row">
+                            <div class="col2">
+                                <h5>SUMMARY</h5>
+                            </div>
+                            <div class="col2">
+                                <ul class="movie-likes">
+                                    <li><i class="fas fa-thumbs-up">&#xE813;</i>124</li>
+                                    <li><i class="fas fa-thumbs-down">&#xE813;</i>3</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mr-grid">
+                            <div class="col1">
+                                <p class="movie-description">{{movie.Plot}}</p>
+                            </div>
+                        </div>
+                        <div class="mr-grid actors-row">
+                            <div class="col1">
+                                <p class="movie-actors">{{movie.get_actors}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mr-grid action-row">
+                        <div class="col6 action-btn"><i class="fas fa-check">&#xE161;</i>
+                        </div>
+                        <div class="col6 action-btn"><i class="fas fa-plus">&#xE866;</i>
+                        </div>
+                        <div class="col6 action-btn"><i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

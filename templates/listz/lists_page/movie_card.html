@@ -1,0 +1,84 @@
+{% load static %}
+
+<div class="movie_card" name={{movie.id}}>
+  <div class="movie-img">
+    {% if movie.poster_url|length > 1 %}
+    <img src="{{movie.poster_url}}">
+    {% else %}
+    <img src="{% static 'images/final_placeholder.jpg' %}">
+    {% endif %}
+    {% if movie in user.profile.is_watched.all %}
+    <div class="grad-filter" style="display: block;"></div>
+    {% else %}
+    <div class="grad-filter" style="display: none;"></div>
+    {% endif %}
+    <div class="overlay-row">
+      <div id="card_imdb">
+        <span><i class="fa fa-imdb"></i> {{movie.imdb_rating}}</span>
+      </div>
+      <div id="movie_card_title">
+          <h1>{{movie.title}}</h1>
+          <h5>by <span class="card_director">{{movie.get_directors}}</span></h5>
+      </div>
+      <div id="country-year-runtime">
+        <ul class="card_info">
+          <li>{{movie.get_countries}} |</li>
+          <li>{{movie.runtime}} min |</li>
+          <li>Year: {{movie.year}}</li>
+        </ul>
+      </div>
+      <div id="card_genres">
+        <ul class="card_info">
+          <li><span>Genres: </span>{{movie.get_genres}}</li>
+        </ul>
+      </div>
+      <div class="plot_container">
+        <div id="summary_header">
+          <h5>SUMMARY</h5>
+        </div>
+        <div id="card_plot">
+          <p class="plot">{{movie.plot}}</p>
+        </div>
+      </div>
+      <div class="actors">
+        <div id="stars_header">
+          <h5>Starring</h5>
+        </div>
+        <div id="card_actors">
+          {% for star in movie.stars %}
+          <p>{{star}}</p>
+          {% endfor %}
+        </div>
+      </div>
+      <div id="card_buttons">
+        <ul>
+          {% if movie in user.profile.is_watched.all %}
+          <li><i id="queen" class="fas fa-times" value={{movie.id}}></i></li>
+          {% else %}
+          <li><i class="fas fa-check" value={{movie.id}}></i></li>
+          {% endif %}
+          <li>
+            <i class="fas fa-plus" value={{movie.id}}></i>
+            <div id="myDropdown" class="dropdown-content">
+              {% if user.watchlist_owner.exists %}
+              {% for watchlist in user.watchlist_owner.all %}
+              <span class="watchlist_to_add" value={{movie.id}} name={{watchlist.id}}>{{watchlist.title}}</span>
+              {% endfor %}
+              {% else %}
+              <span>You don't have any watchlist. Would you like to create one?</span>
+              {% endif %}
+            </div>
+          </li>
+          <li><i class="fas fa-play"></i></li>
+        </ul>
+      </div>
+      
+    </div>
+    <div class="trailer_div">
+      <div class="trailer">
+        <iframe id='youtube_video' src={{trailer}} frameborder="0" allowfullscreen loading='lazy'></iframe>
+      </div>
+      <i class="fas fa-long-arrow-alt-left"></i>
+    </div>
+  </div>
+</div>

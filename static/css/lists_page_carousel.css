@@ -1,0 +1,226 @@
+.swiper_carousel_ {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: auto;
+    margin-top: 60px;
+    border-bottom: 1.5px solid rgba(0,0,0,0.25);
+    border-radius: 5px;
+}
+.swiper-container {
+    height: auto;
+    position: relative;
+}
+@media (min-width: 800px) {
+    .swiper-container {
+        height: auto;
+    } 
+    }
+@media (max-width: 800px) {
+.swiper_carousel_ {
+    width: 90%;
+} 
+}
+
+.title-section {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-bottom: 4px;
+}
+
+.title-section a {
+    text-decoration: none;
+}
+
+.title-section #carousel-user-href {
+    color: rgb(209, 209, 151);
+    margin-left: 6px;
+}
+
+.title-section #carousel-user-href:hover {
+    color: rgba(243, 243, 120, 0.979)
+}
+
+.title-section h3 {
+    margin-right: auto;
+    margin-left: 12px;
+    display: inline-flex;
+    font-size: 24px;
+    color: aliceblue;
+    font-family: 'overpass';
+    font-weight: 700;
+}
+
+.title-section span {
+    display: inline-flex;
+    align-items: center;
+    margin-right: auto;
+    margin-left: 12px;
+    font-size: 14px;
+    font-family: 'overpass';
+    font-weight: 600;
+    white-space: nowrap;
+    color: rgb(209, 209, 151);
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    height: 250px;
+    width: 175px;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    position: relative;
+    border-radius: 12px;
+}
+
+@media (max-width: 800px) {
+.swiper-slide {
+    height: 200px;
+    width: 140px;
+} 
+}
+
+@media (max-width: 500px) {
+    .swiper-slide {
+        height: 125px;
+        width: 87.5px;
+    } 
+    }
+
+.mov-img-box {
+    display:block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.img-box-swiper,
+.img-box-swiper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+}
+
+.movie-img-box:hover {
+    background-color: wheat;
+}
+
+.img-box-swiper h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1123 !important;
+}
+
+.carousel-title-info {
+    display:flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 12px;
+    margin-left: 5px;
+}
+
+.carousel-title-info h3 {
+    float: left;
+    font-size: 13.5px;
+    color: aliceblue;
+    font-family: 'overpass';
+    font-weight: 700;
+    text-transform:none;
+    
+}
+
+#mov-name {
+    margin-top: 12px;
+}
+
+#mov-turkish-name {
+    opacity: 0.5;
+}
+
+#mov-name-more {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#mov-name-more h3 {
+    font-size: 18px;
+    color: aliceblue;
+    font-family: 'overpass';
+    font-weight: 700;
+    text-transform:none;
+}
+
+.other-info {
+    text-align: left;
+    float: left;
+    width: auto;
+    display: block;
+    color: rgba(255, 249, 249, 0.658);
+    font-family: 'overpass';
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.bottom-section {
+    display: flex;
+    position: relative;
+}
+
+
+.bottom-column {
+    flex-grow: 1;
+    margin-top: 5px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    font-family: 'overpass';
+    font-weight: 600;
+    white-space: nowrap;
+    color: rgb(209, 209, 151);
+}
+
+#total-seen-box {
+    align-items: center;
+}
+
+#list-vote-up {
+    margin-left: auto;
+}
+
+#vote-arrow {
+    margin-left: 8px;
+}
+
+#vote-count {
+    margin-left: 2px;
+}
+
+@media (max-width: 800px) {
+    .bottom-column {
+       font-size: 12px;
+    }
+    .carousel-title-info h3{
+        font-size: 12px;
+    }
+    }

@@ -1,0 +1,181 @@
+{% extends 'listz/base.html' %}
+{% load static %}
+
+{% block head_link %}
+<link rel="stylesheet" href="{% static 'css/auth/login/login.css' %}">
+{% endblock %}
+{% load i18n %}
+{% load account socialaccount %}
+{% block content %}
+<div class="authpagecontainer">
+    <div class='split left'>
+        <div class="login_container">
+            <h1>Login</h1>
+
+            {% get_providers as socialaccount_providers %}
+
+            {% if socialaccount_providers %}
+
+            <div class="socialaccount_ballot">
+
+                <ul class="socialaccount_providers">
+                    {% load socialaccount %}
+
+                    {% for provider in socialaccount_providers %}
+                    {% if provider.id == "openid" %}
+                    {% for brand in provider.get_brands %}
+                    <li>
+                        <a title="{{brand.name}}" class="socialaccount_provider {{provider.id}} {{brand.id}}"
+                            href="{% provider_login_url provider.id openid=brand.openid_url process='login' %}"><i
+                                class="fab fa-{{brand.name}}-f"></i></a>
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                    {% if provider.name == "Facebook" %}
+                    <li>
+                        <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}"
+                            href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"><i
+                                class="fab fa-{{provider.name|lower}}-f"></i></a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}"
+                            href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"><i
+                                class="fab fa-{{provider.name|lower}}"></i></a>
+                    </li>
+                    {% endif %}
+
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="login-or">or login manually</div>
+
+            {% include "socialaccount/snippets/login_extra.html" %}
+
+            {% endif %}
+
+            <form class="login" method="POST" action="{% url 'login-register' %}">
+                {% csrf_token %}
+                {% for field in form.visible_fields %}
+
+                <div class='form-input-package'>
+                    <span id='formfield'>{{field}}</span>
+                    </br>
+                </div>
+                {% endfor %}
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-error">
+                                <strong>{{error|escape}}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-error">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+    
+                    {% endfor %}
+                {% endif %}
+                
+
+                {% for hidden in form.hidden_fields %}
+                {{hidden}}
+                </br>
+                {% endfor %}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <a class="secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?</a>
+                <button class="primaryAction" type="submit"><span class="button_span">Sign In</span></button>
+            </form>
+        </div>
+    </div>
+
+    <div class='split right'>
+        <div class="login_container">
+            <h1>Sign Up</h1>
+
+            {% if socialaccount_providers %}
+
+            <div class="socialaccount_ballot">
+
+                <ul class="socialaccount_providers">
+                    {% load socialaccount %}
+
+                    {% for provider in socialaccount_providers %}
+                    {% if provider.id == "openid" %}
+                    {% for brand in provider.get_brands %}
+                    <li>
+                        <a title="{{brand.name}}" class="socialaccount_provider {{provider.id}} {{brand.id}}"
+                            href="{% provider_login_url provider.id openid=brand.openid_url process='login' %}"><i
+                                class="fab fa-{{brand.name}}-f"></i></a>
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                    {% if provider.name == "Facebook" %}
+                    <li>
+                        <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}"
+                            href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"><i
+                                class="fab fa-{{provider.name|lower}}-f"></i></a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}"
+                            href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"><i
+                                class="fab fa-{{provider.name|lower}}"></i></a>
+                    </li>
+                    {% endif %}
+
+                    {% endfor %}
+                </ul>
+            </div>
+
+            {% endif %}
+
+            <div class="login-or">or sign up manually</div>
+
+            <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                {% csrf_token %}
+                {% for field in signupform.visible_fields %}
+                <div class='form-input-package'>
+                    <span id='formfield'>{{field}}</span>
+                    </br>
+                </div>
+                {% endfor %}
+
+                {% if signupform.errors %}
+                    {% for field in signupform %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-error">
+                                <strong>{{error|escape}}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                        {% for error in signupform.non_field_errors %}
+                            <div class="alert alert-error">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+    
+                    {% endfor %}
+                {% endif %}
+
+
+                {% for field in signupform.hidden_fields %}
+                {{hidden}}
+                </br>
+                {% endfor %}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button class="primaryAction" id='signupButton' type="submit"><span class="button_span">Sign
+                        Up</span></button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

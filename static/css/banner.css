@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,800');
+
+.home .carousel-item{
+	min-height: 75vh;
+	background-size: cover;
+	position: relative;
+	z-index: 1;
+	background-position: -100% 10% !important;
+	overflow: hidden;
+	
+}
+.home .carousel-item:before{
+	content: '';
+	position: absolute;
+	left:0;
+	top:0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	z-index: -1;
+}
+.home .carousel-item .box{
+	position: relative;
+	/*left:50%;
+	top:30%;
+	transform: translate(-50%,-50%); */
+	text-align: center;
+	justify-content: center;
+	margin-top: 12vh;	
+}
+
+@keyframes fadeInLeft{
+	0%{
+		opacity: 0;
+		transform: translateX(-30px);
+	}
+	100%{
+		opacity: 1;
+		transform: translateX(0px);
+	}
+}
+@keyframes fadeInRight{
+	0%{
+		opacity: 0;
+		transform: translateX(30px);
+	}
+	100%{
+		opacity: 1;
+		transform: translateX(0px);
+	}
+}
+
+.home .carousel-item.active h2{
+	animation: fadeInLeft 0.5s ease forwards;
+}
+.home .carousel-item.active p{
+	animation: fadeInRight 0.5s ease forwards;
+}
+
+.home .carousel-controls{
+	position: absolute;
+	left: 50%;
+	bottom: 40px;
+	z-index: 10;
+	transform: translateX(-50%);
+}
+
+.home .carousel-indicators{
+	position: relative;
+	top:25px;
+	margin:0;
+}
+
+.home .carousel-indicators button{
+	height: 50px;
+	width: 50px;
+	margin:0 5px;
+	border-radius: 50%;
+	background-position: center;
+	background-size: cover;
+	border:1.4px solid transparent;
+	transition: all 0.3s ease;
+}
+.home .carousel-indicators button.active{
+	border-color: #ffffff;
+	transform: scale(1.2);
+}
+
+.home .carousel-control-next, 
+.home .carousel-control-prev{
+	height: 60px;
+	width: 60px;
+	opacity: 1;
+	z-index: 3;
+	top: 50%;
+	transform: translateY(-50%);
+	border-radius: 50%;
+	transition: all 0.3s ease;
+}
+.home .carousel-control-next:hover, 
+.home .carousel-control-prev:hover{
+   box-shadow: 0 0 10px #ffffff;
+}
+.home .carousel-control-next img, 
+.home .carousel-control-prev img{
+   width: 30px;
+}
+.home .carousel-control-next{
+	right: -90px;
+}
+.home .carousel-control-prev{
+	left: -90px;
+}
+
+/*responsive*/
+@media(max-width: 767px){
+    .home .carousel-control-next, 
+    .home .carousel-control-prev{
+        display: none;
+    }
+    .home .carousel-indicators button{
+        height: 30px;
+        width: 30px;
+    }
+    .home .carousel-item h2{
+        font-size: 40px;
+    }
+    .home .carousel-item p{
+        font-size: 14px;
+    }
+    .home .carousel-item {
+        min-height: 80vh;
+    }
+  }
+
+.banner_container {
+    display: flex;
+    flex-direction: column;
+    z-index: 2 !important;
+    position: relative;
+    padding: 50px;
+}
+
+.banner_upper_fragment {
+    display: flex;
+    flex-direction: row;
+}
+
+.banner_upper_fragment .banner_mini_poster {
+    width: 175px;
+    height: 250px;
+    float: left;    
+}
+.banner_upper_fragment .banner_mini_poster img {
+    width: 100%;
+    height: 100%;
+}
+
+.banner_upper_fragment .banner_movie_info {
+    display: flex;
+    flex-direction: column;
+}
+.banner_upper_fragment .banner_movie_info .banner_title {
+    width: 100%;
+    float: left;
+    margin-left: 10px;
+}
+
+.banner_upper_fragment .banner_movie_info .banner_title h2 {
+    font-size: 36px;
+    font-family: 'montserrat', sans-serif;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.banner_upper_fragment .banner_movie_info .banner_title h5 {
+    font-size: 14px;
+    font-family: 'montserrat', sans-serif;
+    font-weight: 600;
+    color: #ffffff80;
+}
+
+.banner_upper_fragment .banner_other_infos {
+    display: flex;
+    width: 100%;
+    float: left;
+    margin-left: 5px;
+}
+
+.banner_upper_fragment .banner_other_infos li {
+    font-family: 'montserrat', sans-serif;
+    font-size: 16px;
+    color: #dfdfdf;
+    display: block;
+    float: left;
+    font-weight: 400;
+}
+
+.banner_upper_fragment .banner_other_infos li span {
+    font-family: 'montserrat', sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.banner_middle_fragment {
+    margin-top: 10px;
+}
+
+.banner_middle_fragment .banner_movie_desc {
+    display: flex;
+    width: 40%;
+    float: left;   
+}
+
+.banner_middle_fragment .banner_movie_desc p {
+    font-size: 16px;
+    font-family: 'montserrat', sans-serif;
+    color: white;
+    font-weight: 500;
+    line-height: 1.8em;
+    margin: 0;
+}
+
+.banner_bottom_fragment {
+    margin-top: 20px;
+}
+
+.banner_bottom_fragment .banner_icons li {
+    font-family: 'montserrat', sans-serif;
+    font-size: 16px;
+    color: #f7f7f7;
+    display: block;
+    float: left;
+    font-weight: 400;
+}
+
+.banner_bottom_fragment .banner_icons li i {
+    color: rgb(218,69,69);
+    cursor: pointer;
+    padding-right: 15px; 
+}
+
+.banner_bottom_fragment .banner_icons li i:hover {
+    color: wheat;
+}
+
+.blur_back {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    height: 100%; right: 0;
+    background-size: cover;
+    border-radius: 11px;
+}
+
+.bright_back {
+	width: 100%;
+	height: 100%;
+	border-radius: 8px;
+	background: linear-gradient(to left, rgba(42, 159, 255, 0.2) 0%, #212120 70%, #212120 100%);
+	background-blend-mode: multiply;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+}

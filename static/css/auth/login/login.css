@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+.split {
+    height: 100%;
+    width: 100%;
+    position: flex;
+    z-index: 1;
+    overflow-x: hidden;
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    flex-direction: column;
+    padding: 0;
+    margin-top: 100px;
+}
+
+@media screen and (max-width: 768px) {
+    .split {
+        transform: scale(0.86);
+        margin-top: 0;
+    }
+}
+
+.login_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+    margin-bottom: 80px;
+}
+
+.login_container h1 {
+    color:wheat;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0;
+    font-family: 'montserrat', sans-serif;
+    
+}
+
+.login_container p {
+    color: white;
+    font-size: 14px;
+    font-family: 'montserrat', sans-serif;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+}
+
+.login_container a {
+    color: rgb(255, 255, 255);
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+    font-family: 'montserrat', sans-serif;
+}
+.login_container a:hover {
+    color:rgb(218, 69, 69);
+}
+
+.login_container .primaryAction {
+	border-radius: 20px;
+	border: 1px solid #ffffff;
+	background-color: #000000;
+	color: #FFFFFF;
+    display: inline-block;
+	font-size: 12px;
+	font-weight: bold;
+    padding: 0.65rem 1.75rem;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+
+.login_container .primaryAction:active {
+	transform: scale(0.95);
+}
+
+.login_container .primaryAction:focus {
+	outline: none;
+}
+
+.login_container button.primaryAction {
+	background-color: transparent;
+	border-color: #FFFFFF;
+}
+
+.login_container button.primaryAction:hover {
+	background-color: rgb(218, 69, 69);
+    border: none;
+}
+
+.login_container button#signupButton {
+    margin-top: 16px;
+}
+
+.login_container a.secondaryAction {
+    font-weight: bold;
+    font-family: 'montserrat', sans-serif;
+    color: pink;
+}
+
+.login_container a.secondaryAction:hover {
+    color: rgb(218, 69, 69);
+}
+
+.login_container span {
+    color: white;
+    font-size: 12px;
+    font-family: 'montserrat', sans-serif;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+}
+
+.login {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	text-align: center;
+    height: auto;
+    width: 100%;
+}
+
+.signup {
+    display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	text-align: center;
+    height: auto;
+    width: 100%;
+}
+
+.login_container input {
+    border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 300px;
+    height: 75%;
+}
+
+
+.login_container input:focus {
+    border: 2px solid pink;
+    border-radius: 20px;
+}
+
+
+.socialaccount_ballot {
+	margin: 10px 0;
+    text-align: center;
+}
+
+.socialaccount_ballot ul {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    /* For IE, the outcast */
+    zoom:1;
+    *display: inline;
+    list-style-type: none;
+}
+
+.socialaccount_ballot ul li{
+    float: left;
+    padding: 2px 5px;
+}
+
+.socialaccount_ballot a {
+	
+	border-radius: 50%;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 5px;
+	height: 40px;
+	width: 40px;
+}
+
+.login_container input[type="checkbox"] { display: none; background-color: transparent;}
+
+.login_container input[type="checkbox"] + label {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    font: 14px/20px 'Open Sans', Arial, sans-serif;
+    color: #ddd;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  
+.login_container input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+  
+.login_container input[type="checkbox"] + label:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #6cc0e5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: .6;
+    -webkit-transition: all .12s, border-color .08s;
+    transition: all .12s, border-color .08s;
+  }
+  
+.login_container input[type="checkbox"]:checked + label:before {
+    width: 10px;
+    top: -5px;
+    left: 5px;
+    border-radius: 0;
+    opacity: 1;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+.login-or {
+    font-family: 'montserrat', sans-serif;
+    color: rgba(255, 255, 255, 0.822);
+    font-size: 12px;
+}
+
+.alert-error {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.login_container strong {
+    font-family: 'montserrat', sans-serif;
+    color:rgb(218, 69, 69);
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.image_container {
+    margin-top: 20px;
+}
+
+.profile_image_update {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+}
+
+#watchlist_creation_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#watchlist_creation_container i {
+    font-size: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+#close_form {
+    margin-right: 10px;
+}
+#submit_form {
+    margin-left: 10px;
+}
+.watchlist_form {
+    display: flex;
+    flex-direction: row;
+}
+
+.watchlist_form button {
+    box-shadow: 0px;
+}
+
+.watchlist_form input {
+    background-color: rgba(0, 0, 0, 0.897);
+    color: white;
+    box-shadow: 0px 2px 6px rgba(3, 3, 3, 0.808);
+    padding: 5px 20px;
+    height: 30px;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 12px;
+}

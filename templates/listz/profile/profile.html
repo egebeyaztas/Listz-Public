@@ -1,0 +1,220 @@
+{% extends 'listz/base.html' %}
+
+{% load static %}
+
+{% block head_link %}
+<link rel="stylesheet" href="{% static 'css/auth/login/login.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/lists.css' %}">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="{% static 'css/movie_card.css' %}">
+<link rel="stylesheet" href="{% static 'css/lists_page_carousel.css' %}">
+<link rel="stylesheet" href="{% static 'css/banner.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<div id="main_profile_container">
+ <div id="cover_photo">
+  <div class="bright_back blur_back"></div>
+ </div>
+ <div id="flex_profile_info">
+    <div id="profile-img">
+      <div id="profile-img-flexbox">
+      <img src="{{profile.profile_picture.url}}">
+      </div>
+    </div>
+    <div id="profile-info">
+      <ul>
+        <li><h2>{{profile.name}}</h2></li>
+        <li><p>{{profile.user.username}}</p></li>
+        <li><span>{{profile.country}}</span></li>
+        <li><span>{{profile.bio}}</span></li>
+      </ul>
+      <button type="button" class="profile_button">Edit Profile</button>
+      <span id="url_span" value="{% url 'edit-profile' %}" style="display: none;">1</span>
+      <button type="button" id="profile_button">Create Watchlist</button>
+    </div>
+    <div id="profile_counts">
+      <div class="count_box">
+        <span>Total Watched: {{profile.is_watched.all.count}}</span>
+        <span>Total Watchlists: {{profile.user.watchlist_owner.all.count}}</span>
+        <span>Followed Watchlists: 0</span>
+      </div>
+    </div>
+  </div>
+  <div id="favourite_movie">
+    {% for movie in profile.favourites.all|slice:"0:3" %}
+    <div id="img_frame" class="gradient-border">
+      <img src="{{movie.poster_url}}">
+    </div>
+    {% endfor %}
+    <a href="#"><i class="fas fa-angle-double-right"></i></a>
+  </div>
+  <div id="headerz">
+    <div class="half" id="watchlists_header">
+      <h2 class="ajax_header_watchlist" value="yours">Your Watchlists</h2>
+    </div>
+    <div class="half" id="followed_header">
+      <h2 class="ajax_header_watchlist" value="followed">Followed Watchlists</h2>
+    </div>
+    <span class="url_span" value="{% url 'get-watchlists-for-profile' %}" style="display: none;">1</span>
+  </div>
+  <div id="dynamic_content">
+    <div class="half_grid" id="watchlists">
+
+    </div>
+  </div>
+</div>
+{% include 'listz/profile/profile_update.html' %}
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper', {
+   
+        slidesPerView: 'auto',
+        
+        spaceBetween: 10,
+        // init: false,
+
+    });
+</script>
+<script>
+  $(function () {
+    $('.ajax_header_watchlist').click(function(event){
+      event.preventDefault();
+      sending_data = $(this).attr('value');
+      URL = $('.url_span').attr('value');
+      $.ajax({
+        type: "GET",
+        url: URL,
+        data: sending_data,
+        success: function(data) {
+          $('#watchlists').html(data);
+        }
+      })
+    });
+  });
+</script>
+<script>
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = jQuery.trim(cookies[i]);
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  };
+/*
+  $(function () {
+    $('.profile_button').click(function(event){
+      event.preventDefault();
+      var csrftoken = getCookie('csrftoken');
+      console.log(csrftoken);
+      URL = $('#url_span').attr('value');
+      console.log(URL);
+      $.ajax({
+        type: "GET",
+        url: URL,
+        data: {'csrfmiddlewaretoken': csrftoken},
+        success: function(data) {
+          $('#watchlists').html(data);
+        }
+      })
+    });
+  });
+*/
+  $(function () {
+    $('#profile_button').click(function(event){
+      event.preventDefault();
+      var csrftoken = getCookie('csrftoken');
+      console.log(csrftoken);
+      URL = "/profile/create_watchlist/";
+      console.log(URL);
+      $.ajax({
+        type: "GET",
+        url: URL,
+        data: {'csrfmiddlewaretoken': csrftoken},
+        success: function(data) {
+          $('#profile-info').append(data);
+        }
+      })
+    });
+  });
+  $(document).on('click', '#close_form', function (e){
+   $(this).closest('div').closest('div').closest('div').hide();
+  })
+/*
+  $(function() {
+    $('.watchlist_form').on('submit', function(event){
+      event.preventDefault();
+      var serial_data = $(this).serialize();
+      var csrftoken = getCookie('csrftoken');
+      console.log(csrftoken);
+      URL = "{% url 'create-watchlist' %}";
+      console.log(URL);
+      $.ajax({
+        type: "POST",
+        url: URL,
+        data: serial_data,
+        success: function(data) {
+          $(this).closest('div').closest('div').closest('div').hide();
+          alert('Watchlist created.'); 
+        }
+      }) 
+      console.log("works");
+    });
+  });
+*/
+$(document).on('submit', '.watchlist_form', function (e){
+    e.preventDefault();
+    var serial_data = $(this).serialize();
+    var csrftoken = getCookie('csrftoken');
+    var will_hide = $(this).closest('div');
+    console.log(csrftoken);
+    URL = "{% url 'create-watchlist' %}";
+    console.log(URL);
+    $.ajax({
+      type: "POST",
+      url: URL,
+      data: serial_data,
+      success: function(data) {
+        will_hide.hide();
+        console.log(data['succesful']);
+      }
+    }) 
+    console.log("works");
+  });
+
+  var modalx = document.getElementById("edit_profile_modal");
+  var spanx = document.getElementsByClassName("closeButtonX1")[0];
+  var btnx = document.getElementsByClassName('profile_button')[0];
+  var cont = document.getElementById("main_profile_container");
+
+  btnx.onclick = function() {
+    modalx.style.display = "block";
+  }
+  spanx.onclick = function() {
+    modalx.style.display = "none";
+  }
+  
+  window.onclick = function(event) {
+    if (event.target == modalx) {
+      modalx.style.display = "none";
+    }
+  }
+
+</script>
+{% endblock %}

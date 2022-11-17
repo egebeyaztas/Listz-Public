@@ -1,0 +1,158 @@
+<section class="home">
+
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-controls">
+            <ol class="carousel-indicators">
+                <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" aria-current="true"
+                    style="background-image:url('/static/images/kill_bill.jpg')"></button>
+                <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" class="active"
+                    style="background-image:url('/static/images/1917movie.jpg')"></button>
+                <button type="button" data-bs-target="#carousel" data-bs-slide-to="2"
+                    style="background-image:url('/static/images/nocountry.jpg')"></button>
+            </ol>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item" style="background-image:url('/static/images/kill_bill.jpg')">
+                <div id="close-banner">
+                    <button type="button" id='close-banner-button'><i class="fas fa-times"></i></button>
+                </div>
+                <div class="movie_card" id="bright">
+                    <div class="banner_container">
+                        <div class="banner_upper_fragment">
+                            <div class="banner_mini_poster">
+                                <img src="{{kill_bill.poster_url}}">
+                            </div>
+                            <div class="banner_movie_info">
+                                <div class="banner_title">
+                                    <h2>{{kill_bill.title}}</h2>
+                                    <h5>by {{kill_bill.get_directors}}</h5>
+                                </div>
+                                <div class="banner_other_infos">
+                                    <ul style="padding: 0; margin: 0;">
+                                        <li>{{kill_bill.get_countries}} |</li>
+                                        <li>{{kill_bill.runtime}} min |</li>
+                                        <li>Year: {{kill_bill.year}} </li>
+                                    </ul>
+                                </div>
+                                <div class="banner_other_infos">
+                                    <ul style="padding: 0; margin: 0;">
+                                        <li><span>Genres: </span>{{kill_bill.get_genres}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="banner_middle_fragment">
+                            <div class="banner_movie_desc">
+                                <p>{{kill_bill.plot}}</p>
+                            </div>
+                        </div>
+                        <div class="banner_bottom_fragment">
+                            <div class="banner_icons">
+                                <ul style="padding: 0; margin: 0;">
+                                    <li><i class="fas fa-check"></i></li>
+                                    <li><i class="fas fa-plus"></i></li>
+                                    <li><i class="fas fa-play"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                <div class="blur_back bright_back"></div>
+                </div>
+            </div>
+            <div class="carousel-item active" style="background-image:url('/static/images/1917movie.jpg')">
+                <div id="close-banner">
+                    <button type="button" id='close-banner-button'><i class="fas fa-times"></i></button>
+                </div>
+                <div class="movie_card" id="bright">
+                    <div class="banner_container">
+                        <div class="banner_upper_fragment">
+                            <div class="banner_mini_poster">
+                                <img src="{{w1917.poster_url}}">
+                            </div>
+                            <div class="banner_movie_info">
+                                <div class="banner_title">
+                                    <h2>{{w1917.title}}</h2>
+                                    <h5>by {{w1917.get_directors}}</h5>
+                                </div>
+                                <div class="banner_other_infos">
+                                    <ul style="padding: 0; margin: 0;">
+                                        <li>{{w1917.get_countries}} |</li>
+                                        <li>{{w1917.runtime}} min |</li>
+                                        <li>Year: {{w1917.year}} </li>
+                                    </ul>
+                                </div>
+                                <div class="banner_other_infos">
+                                    <ul style="padding: 0; margin: 0;">
+                                        <li><span>Genres: </span>{{w1917.get_genres}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="banner_middle_fragment">
+                            <div class="banner_movie_desc">
+                                <p>{{w1917.plot}}</p>
+                            </div>
+                        </div>
+                        <div class="banner_bottom_fragment">
+                            <div class="banner_icons">
+                                <ul style="padding: 0; margin: 0;">
+                                    <li><i class="fas fa-check"></i></li>
+                                    <li><i class="fas fa-plus"></i></li>
+                                    <li><i class="fas fa-play"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                <div class="blur_back bright_back"></div>
+                </div>
+            </div>
+            <div class="carousel-item" style="background-image:url('/static/images/nocountry.jpg')">
+                <div id="close-banner">
+                    <button type="button" id='close-banner-button'><i class="fas fa-times"></i></button>
+                </div>
+                <div class="movie_card" id="bright">
+                    <div class="banner_container">
+                        <div class="banner_upper_fragment">
+                            <div class="banner_mini_poster">
+                                <img src="{{no_country.poster_url}}">
+                            </div>
+                            <div class="banner_movie_info">
+                                <div class="banner_title">
+                                    <h2>{{no_country.title}}</h2>
+                                    <h5>by {{no_country.get_directors}}</h5>
+                                </div>
+                                <div class="banner_other_infos">
+                                    <ul style="padding: 0; margin: 0;">
+                                        <li>{{no_country.get_countries}} |</li>
+                                        <li>{{no_country.runtime}} min |</li>
+                                        <li>Year: {{no_country.year}} </li>
+                                    </ul>
+                                </div>
+                                <div class="banner_other_infos">
+                                    <ul style="padding: 0; margin: 0;">
+                                        <li><span>Genres: </span>{{no_country.get_genres}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="banner_middle_fragment">
+                            <div class="banner_movie_desc">
+                                <p>{{no_country.plot}}</p>
+                            </div>
+                        </div>
+                        <div class="banner_bottom_fragment">
+                            <div class="banner_icons">
+                                <ul style="padding: 0; margin: 0;">
+                                    <li><i class="fas fa-check"></i></li>
+                                    <li><i class="fas fa-plus"></i></li>
+                                    <li><i class="fas fa-play"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                <div class="blur_back bright_back"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

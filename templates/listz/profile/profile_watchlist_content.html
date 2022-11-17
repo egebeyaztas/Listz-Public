@@ -1,0 +1,41 @@
+{% load static %}
+
+{% for watchlist in watchlists %}
+<div class="grid_comp">
+    <div class="swiper">
+        <div class="title-section">
+            <a href="{% url 'list-to-grid-view' watchlist.slug %}" class='to-the-grid-view-href'>
+                <h3>{{watchlist.title}}</h3>
+            </a>
+            <p value="{% url 'list-to-grid-view' watchlist.slug %}" class='filter-them-artik' style="display: none;">hadi artik</p>
+            <span>by <a href="#" id="carousel-user-href">AttackonPython</a></span>
+        </div>
+        <div class="swiper-wrapper">
+            {% for movie in watchlist.get_movies %}
+            <div class="swiper-slide">
+                <div class="mov-img-box">
+                    <div class='img-box-swiper'>
+                        <img class="db_img" src="{{movie.Poster_url}}">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+<div class="grid_comp">
+    <button type="button" value="Loader">Load More</button>
+</div>
+
+{% block scripts %}
+<script>var swiper = new Swiper('.swiper', {
+   
+    slidesPerView: 'auto',
+    
+    spaceBetween: 10,
+    // init: false,
+
+});
+</script>
+{% endblock %}

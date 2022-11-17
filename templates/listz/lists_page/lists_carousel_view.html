@@ -1,0 +1,87 @@
+{% extends "listz/base.html" %}
+{% load static %}
+{% block head_link %}
+<link rel="stylesheet" href="{% static 'css/lists.css' %}">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="{% static 'css/movie_card.css' %}">
+<link rel="stylesheet" href="{% static 'css/lists_page_carousel.css' %}">
+
+{% endblock %}
+{% block content %}
+{% for list in lists %}
+<div class="swiper_carousel_">
+<div class="swiper">
+    <div class="title-section">
+        <a href="{% url 'list-to-grid-view' list.slug %}" class='to-the-grid-view-href'><h3>{{list.title}}</h3></a>
+        <p value="{% url 'grid-view-filter-data' list.id %}" class='filter-them-artik' style="display: none;">hadi artik</p>
+        <span>by <a href="{% url 'profile' user.username %}" id="carousel-user-href">AttackonPython</a></span>
+        
+    </div>
+    <div class="swiper-wrapper">
+        {% for movie in list.get_movies %}
+        <div class="swiper-slide">
+            <div class="mov-img-box">
+                <div class='img-box-swiper'>
+                    <img class="db_img" src="{{movie.poster_url}}"> 
+                </div>
+                <div class='carousel-title-info' id='mov-name'>
+                    <a href="#"><h3>{{movie.title}}</h3></a>
+                    <span class="other-info">{{movie.year}}</span>
+                </div>     
+            </div>
+        </div>
+        {% endfor %}
+        <div class="swiper-slide">
+            <div class="mov-img-box">
+                <div class='img-box-swiper'>
+                    <img class="db_img" src="{% static 'images/lists_category_images/by_editor/by_editor.jpg' %}">
+                    <div id='mov-name-more'><h3>9+ More</h3></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bottom-section">
+    <div class="bottom-column" id='s22' style="background-color: transparent;">
+        <div id="total-seen-box">
+            <span class="bottom-col-span" id="total-seen"><i class="fas fa-eye"></i></span>
+            <span class="bottom-col-span" id="total-seen-count">20351</span>
+        </div>
+    </div>
+    <div class="bottom-column" id="s23" style="background-color: transparent;">
+        <div id="list-vote-up">
+            <span class="bottom-col-span" id="vote-arrow"><i class="fas fa-chevron-up"></i></span>
+            <span class="bottom-col-span" id="vote-count" style="color: rgba(255, 255, 255, 0.705); font-family: 'overpass'; font-weight: 300;">15400</span>
+        </div>
+        <div id="list-vote-down">
+            <span class="bottom-col-span" id="vote-arrow"><i class="fas fa-chevron-down"></i></span>
+            <span class="bottom-col-span" id="vote-count" style="color: rgba(255, 255, 255, 0.705); font-family: 'overpass'; font-weight: 300;">300</span>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endfor %}
+
+
+
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper', {
+   
+        slidesPerView: 'auto',
+        
+        spaceBetween: 10,
+        // init: false,
+
+    });
+</script>
+
+<!-- Grid View Filter Data (Ajax) -->
+
+{% endblock %}

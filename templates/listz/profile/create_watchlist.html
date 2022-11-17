@@ -1,0 +1,37 @@
+{% load static %}
+
+<div id="watchlist_creation_container">
+  
+  <i id="close_form" class="fas fa-times" style="color:rgb(218, 49, 49);"></i>
+  
+  <form class="watchlist_form" method="POST" action="{% url 'create-watchlist' %}">
+    {% csrf_token %}
+    
+    {% for field in form.visible_fields %}
+        <span id='watchlist_title_field'>{{field}}</span>
+    {% endfor %}
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-error">
+                    <strong>{{error|escape}}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-error">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+
+            {% endfor %}
+    {% endif %}
+
+    {% for hidden in form.hidden_fields %}
+        {{hidden}}
+    {% endfor %}
+    <button type="submit" id="completed-task" class="fabutton" style="background: none; padding: 0px; border: none;">
+        <i id="submit_form" class="fas fa-check" style="color: rgb(65, 223, 65);"></i>
+    </button>  
+  </form>
+</div>

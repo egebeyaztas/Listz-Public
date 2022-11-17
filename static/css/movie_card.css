@@ -1,0 +1,345 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,800');
+
+.movie_card {
+    display:flex;
+    flex-direction: column;
+    width: 330px;
+    height: 450px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.movie-img {
+    width: 330px;
+    height: 450px;
+    position: relative;
+}
+
+.movie-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.grad-filter {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+}
+
+.trailer_div {
+    display:none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 1;
+}
+
+.overlay-row {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s, visibility .3s;
+    z-index: 11110;
+}
+
+.movie-img:hover .overlay-row {
+    visibility: visible !important;
+    opacity: 0.9 !important;
+}
+
+.overlay-row #card_imdb {
+    display: flex;
+    flex-direction: row;
+    float: right;
+    position: absolute;
+    bottom: 1.9%;
+    right: 5%;
+}
+
+.overlay-row #card_imdb span {
+    font-size: 24px;
+    font-family: 'montserrat', sans-serif;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.overlay-row #card_imdb span i {
+    color: yellowgreen;
+ }
+
+.overlay-row #movie_card_title {
+    width:100%;
+    margin-top:15px;
+    margin-left: auto; margin-right: auto;
+    text-align: center;
+}
+
+.overlay-row #movie_card_title h1{
+    font-size: 21px;
+    font-family: 'montserrat', sans-serif;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.overlay-row #movie_card_title h5{
+    font-size: 14px;
+    font-family: 'montserrat', sans-serif;
+    font-weight: 600;
+    color: #ffffff80;
+    
+}
+
+.overlay-row #movie_card_title h5 span{
+    color: #ffffffcb;
+    font-family: 'montserrat', sans-serif;
+}
+
+.overlay-row #country-year-runtime{
+    display: flex;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+.overlay-row #country-year-runtime ul {
+    padding: 0;
+    margin:0;
+}
+.overlay-row #country-year-runtime li{
+    font-family: 'montserrat', sans-serif;
+    font-size: 12px;
+    color: #dfdfdf;
+    display: block;
+    float: left;
+    font-weight: 600;
+}
+
+.overlay-row #card_genres{
+    display: flex;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+.overlay-row #card_genres ul {
+    padding: 0;
+    margin:0;
+}
+.overlay-row #card_genres li{
+    font-family: 'montserrat', sans-serif;
+    font-size: 12px;
+    color: #dfdfdf;
+    display: block;
+    float: left;
+    font-weight: 600;
+}
+
+.overlay-row #card_genres li span {
+    font-family: 'montserrat', sans-serif;
+    font-size: 12px;
+    color: #ffffff;
+    font-weight: 800;
+}
+.overlay-row .plot_container {
+    position: absolute;
+    top: 165px;
+
+}
+.overlay-row #summary_header {
+    display: flex;
+    width: 90%;
+    height: auto;
+    margin-left: 15px;
+}
+
+.overlay-row #summary_header h5 {
+    font-size: 12px;
+    font-family: 'montserrat', sans-serif;
+    color: white;
+    font-weight: 600;
+}
+
+.overlay-row #card_plot {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto; margin-right: auto;
+}
+
+.overlay-row #card_plot p{
+    font-size: 12px;
+    font-family: 'montserrat', sans-serif;
+    color: white;
+    font-weight: 400;
+    line-height: 1.8em;
+    margin: 0;
+}
+
+.overlay-row .actors {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+}
+
+.overlay-row .actors #stars_header {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.overlay-row .actors #stars_header h5 {
+    font-size: 12px;
+    font-family: 'montserrat', sans-serif;
+    color: white;
+    font-weight: 400;
+}
+
+.overlay-row #card_actors {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+.overlay-row #card_actors p {
+    font-size: 12px;
+    font-family: 'montserrat', sans-serif;
+    color: white;
+    font-weight: 400;
+    line-height: 1.8em;
+    margin: 0;
+    font-style: italic;
+}
+
+.overlay-row #card_buttons {
+    position: absolute;
+    bottom: 4%;
+    left: 4%;
+    z-index: 404020;
+}
+
+.overlay-row #card_buttons ul {
+    padding: 0;
+    margin: 0;
+}
+
+.overlay-row #card_buttons li {
+    font-family: 'montserrat', sans-serif;
+    font-size: 12px;
+    color: #f7f7f7;
+    display: block;
+    float: left;
+    font-weight: 600;
+}
+
+.overlay-row #card_buttons li i {
+    color: rgb(218,69,69);
+    cursor: pointer;
+    padding-right: 15px;
+}
+
+.overlay-row #card_buttons li i:hover {
+    color: wheat;
+}
+
+.dropdown {
+    position: relative !important;
+    display: inline-block;
+    left: -20px;
+    z-index: 3;
+  }
+  
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+display: none;
+position: absolute;
+left: 0;
+top: 25px;
+background-color: #f1f1f1;
+min-width: 160px;
+height: 215px;
+overflow-y: scroll;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 12 !important;
+-ms-overflow-style: none;
+scrollbar-width: none;
+}
+
+.dropdown-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* Links inside the dropdown */
+.dropdown-content span {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 160px;
+    cursor: pointer;
+}
+/* Change color of dropdown links on hover */
+.dropdown-content span:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+.trailer {
+    display: block;
+    width: 310px;
+    height: 380px;
+    background-color: white;
+    margin-bottom: 24px;
+    padding-top: 75%;
+    overflow: hidden;
+    position: relative;
+}
+
+.trailer_div i {
+    position: absolute;
+    bottom: 3.2%;
+    right: 5%;
+    color: rgb(136, 79, 189);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.trailer iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+  /*    experiment    */

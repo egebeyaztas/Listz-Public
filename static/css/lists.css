@@ -1,0 +1,280 @@
+/** 
+    ---  Side Bar ---
+**/
+
+
+
+.category-header {
+  display:flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.category-header h2 {
+  font-size: 24px;
+}
+
+:root {
+  --space: 2rem;
+  --space-xs: calc(var(--space) / 3);
+  --space-sm: calc(var(--space) / 2);
+  --space-md: calc(var(--space) * 2);
+
+  --color-primary: lightgray;
+  --color-accent: whitesmoke;
+  --color-dark: black;
+  --color-mid: gray;
+  --color-light: white;
+  --color-highlight: dodgerblue;
+
+  --radius: 0.125rem;
+}
+
+/* Here are the base styles for the main layout and sticky component */
+* {
+  box-sizing: border-box;
+}
+
+.filter-row {
+  display:none;
+  background-color: #ee8383;
+  width: 60%;
+  justify-content: center;
+  margin-top: 90px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid_view {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.sidebar {
+  --offset: var(--space);
+  flex-grow: 0;
+  flex-basis: 150px;
+  align-self: start;
+  position: sticky;
+  top: var(--offset);
+  
+}
+
+.sidebar .component {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  max-height: calc(100vh - var(--offset) * 2);
+  margin-top: 40px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.sidebar .component::-webkit-scrollbar {
+  display: none;
+  overflow-x: hidden;
+}
+
+.sidebar .component h4 {
+  color: rgba(255, 255, 255, 0.911);
+  padding: 16px;
+  font-size: 16px;
+  margin: 0 32px;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.25);
+}
+
+
+.sidebar .component h4 .sidebar_button:hover {
+  color: #ffffff;
+}
+
+.sidebar .component h4:last-child {
+  border-bottom: none;
+}
+
+.sidebar .component h4 .sidebar_filter::placeholder {
+  font-size: 16px;
+  color:rgba(255, 29, 29, 0.15);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebar .component h4 .sidebar_filter {
+  background-color: transparent;
+  border-color:transparent;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  width: auto;
+}
+
+.filterbut:nth-child(n+11) {
+  display: none;
+}
+
+#SearchItemsContainer .row .col-xs-12 li:nth-child(n+11) {
+  display: none;
+}
+
+#filterbut {
+  padding: 0 1.75rem;
+  line-height: 3.25rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#chosen {
+  color:#f00e0e;
+}
+#chosen:hover {
+  color: white;
+}
+
+#SearchItemsContainer {
+  margin-bottom: 16px;
+  max-width: 150px;
+  position:relative;
+  right: 32px;
+  display: block;
+}
+input[type=text], input[type=button] {
+  -webkit-appearance: none;
+  }
+
+#SearchItemsContainer .row .col-xs-12 li{
+  margin-bottom: -7px;
+  color: rgba(73, 70, 70, 0.25);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  white-space: nowrap;
+  list-style-type:none;
+}
+#SearchItemsContainer .row .col-xs-12 li a:hover{
+  color:#ff6060;
+}
+
+#SearchItemsContainer .row .keep-filter li{
+
+  color: rgba(182, 176, 176, 0.945);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  white-space: nowrap;
+  list-style-type:none;
+}
+#SearchItemsContainer .row .keep-filter li span:hover{
+  color:#ff6060;
+}
+
+
+/*
+ * Other styles
+**/
+
+
+
+
+/* Until flexbox gap is supported in all modern browsers, we use the negative margin trick to create space between the children elements */
+.grid_view {
+  margin-bottom: calc(var(--space-md) * -1);
+ /* margin-left: calc(var(--space-md) * -1); */
+}
+
+.grid_view > * {
+  margin-bottom: var(--space-md);
+  /*margin-left: var(--space-md); */
+}
+
+
+.thumbnail {
+  flex-shrink: 0;
+  width: var(--size);
+  height: var(--size);
+  background: var(--color-primary);
+  border-radius: var(--radius);
+}
+
+.grid {
+  display: grid;
+  grid-gap: 16px;
+  margin: 40px auto;
+  justify-content: center;
+}
+
+.grid .col {
+  background-color: none;
+  padding: 16px;
+  align-self: start;
+}
+
+.grid .img-block {
+  align-self: start;
+  padding: 0;
+  background-color: none;
+}
+
+.grid .img-block img {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+@media (min-width: 950px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  } 
+}
+@media (min-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  } 
+}
+@media (min-width: 1346px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  } 
+}
+@media (min-width: 1692px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  } 
+}
+
+@media (max-width: 647px) {
+  .grid_view {
+    display: block;
+    justify-content: center;
+  }
+  .sidebar {
+    position: relative;
+  }
+  .sidebar .component {
+    justify-content: center;
+    margin-top: 90px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sidebar .component h4 {
+    margin-left: 0px;
+    width: auto;
+  }
+}
+
+/*
+@media (max-width: 768px) {
+  .grid_view {
+    display: flex;
+    justify-content: center;
+  }
+  .sidebar {
+    position: relative;
+  }
+  .sidebar .component {
+    justify-content: center;
+    margin-top: 90px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sidebar .component h4 {
+    margin-left: 0px;
+    width: auto;
+  }
+}
+*/

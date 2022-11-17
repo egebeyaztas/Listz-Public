@@ -1,0 +1,65 @@
+{% extends "listz/base.html" %}
+{% load static %}
+{% block head_link %}
+<link rel="stylesheet" href="{% static 'css/home_page.css' %}" />
+
+
+{% endblock %}
+
+{% block content %}
+{% include 'listz/banner.html' %}
+<!-- Highlights -->
+<section class="wrapper">
+  <div class="inner">
+    <header class="special">
+      <h2 id="header-under-banner">Welcome to the Listz</h2>
+      <p>Listz is a movie informer, recommender website. This website aims to have a community that contributes everyone
+        who can't find any movies to watch in evenings.</p>
+    </header>
+    <div class="highlights">
+      <section>
+        <div class="content">
+          <header>
+            <a href="#" id="home_page_icon_1" class="icon fa-id-card"><span class="label">Icon</span></a>
+            <h3 id="header-under-banner">Why you want to register?</h3>
+          </header>
+          <p>Once you register, you can create watchlists,
+            rate movies, and more exclusively you can get more accurate and personal recommendations.</p>
+        </div>
+      </section>
+      <section>
+        <div class="content">
+          <header>
+            <a href="#" id="home_page_icon_2" class="icon fa-atom"><span class="label">Icon</span></a>
+            <h3 id="header-under-banner">Recommender Engine powered by AI</h3>
+          </header>
+          <p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non
+            faucibus.</p>
+        </div>
+      </section>
+      <section>
+        <div class="content">
+          <header>
+            <a href="#" id="home_page_icon_3" class="icon fa-stream"><span class="label">Icon</span></a>
+            <h3 id="header-under-banner">Faucibus consequat</h3>
+          </header>
+          <p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non
+            faucibus.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  $(document).on('click', '#close-banner-button', function () {
+    $('#carousel').toggle();
+  })
+</script>
+{% endblock %}

@@ -1,0 +1,14 @@
+<svg width="50" height="4" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <style>.cls-1{fill-rule:evenodd;}</style>
+ </defs>
+ <title>horizontal-line</title>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="12" width="124.88" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path stroke="null" id="svg_1" d="m1.51,0l119.86,0a1.52,1.52 0 0 1 1.51,1.51l0,20.67a1.52,1.52 0 0 1 -1.51,1.51l-119.86,0a1.52,1.52 0 0 1 -1.51,-1.51l0,-20.67a1.52,1.52 0 0 1 1.51,-1.51z" class="cls-1"/>
+ </g>
+</svg>

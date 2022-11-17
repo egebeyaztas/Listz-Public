@@ -1,0 +1,31 @@
+{% extends 'listz/base.html' %}
+
+{% load static %}
+{% block head_link %}
+<style>
+    .container {
+        display: flex;
+        margin: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 100px;
+    }
+
+    .img_wrapper, .img_wrapper img {
+        height: 300px;
+        width: 250px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="img_wrapper">
+        <img src="{{user_profile.profile_picture.url}}/">
+    </div>
+</div>
+
+{% endblock %}

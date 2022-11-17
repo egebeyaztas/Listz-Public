@@ -1,0 +1,247 @@
+{% extends "listz/base.html" %}
+{% load static %}
+
+{% block head_link %}
+<link rel="stylesheet" href="{% static 'css/lists.css' %}">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="{% static 'css/movie_card.css' %}">
+<link rel="stylesheet" href="https://overpass-30e2.kxcdn.com/overpass.css">
+<link rel="stylesheet" href="{% static 'css/lists_page_carousel.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<div class="grid_view" id="grid_view">
+<aside class="sidebar">
+
+  <div class="component">
+    <div id="responsive-container-for-filter-1" class="responsive-container-for-filters">
+    <h4><input class="sidebar_filter" id="genres" type="text" placeholder="Genre"></h4>
+    <div class="container-fluid" id="SearchItemsContainer">
+      <div class="row">
+        <div class="keep-filter"></div>
+        <div class="col-xs-12" id="SearchItems">
+        </div>
+      </div>
+    </div>
+  </div>
+    <div id="responsive-container-for-filter-2" class="responsive-container-for-filters">
+    <h4><input class="sidebar_filter" id="actors" type="text" placeholder="Actor/Actress"></h4>
+    <div class="container-fluid" id="SearchItemsContainer">
+      <div class="row">
+        <div class="keep-filter"></div>
+        <div class="col-xs-12" id="SearchItems2">
+        </div>
+      </div>
+    </div>
+  </div>
+    <div id="responsive-container-for-filter-3" class="responsive-container-for-filters">
+    <h4><input class="sidebar_filter" id="directors" type="text" placeholder="Director"></h4>
+    <div class="container-fluid" id="SearchItemsContainer">
+      <div class="row">
+        <div class="keep-filter"></div>
+        <div class="col-xs-12" id="SearchItems3">
+        </div>
+      </div>
+    </div>
+  </div>
+    <div id="responsive-container-for-filter-4" class="responsive-container-for-filters">
+    <h4><input class="sidebar_filter" id="countries" type="text" placeholder="Country"></h4>
+    <div class="container-fluid" id="SearchItemsContainer">
+      <div class="row">
+        <div class="keep-filter"></div>
+        <div class="col-xs-12" id="SearchItems4">
+        </div>
+      </div>
+    </div>
+  </div>
+    <div id="responsive-container-for-filter-5" class="responsive-container-for-filters">
+    <h4><input class="sidebar_filter" id="Imdb_rating" type="text" placeholder="Rating"></h4>
+    <div class="container-fluid" id="SearchItemsContainer">
+      <div class="row">
+        <div class="keep-filter"></div>
+        <div class="col-xs-12" id="SearchItems5">
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="deniyorum-divi">
+      <button id='deniyorum'>BANA BAS</button>
+      <p value="{% url 'grid-view-filter-data' current_list.id %}" style="display: none;">basss</p>
+      <p class='for-ajax-posts' value="{% url 'lists-grid-view-filter' current_list.id %}" style="display: none;">basss</p>
+    </div>
+  </div>
+</aside>
+
+<div class="grid" id="grid">
+  {% include 'listz/lists_page/grid_view_template.html' %}
+</div>
+</div>
+{% csrf_token %}
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="{% static 'js/lists_grid_view_filter.js' %}"></script>
+<script>
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+  setTimeout(function()
+{
+	var max = 150;
+  var tot, str;
+  $('.plot').each(function() {
+  	str = String($(this).html());
+  	tot = str.length;
+    str = (tot <= max)
+    	? str
+      : str.substring(0,(max + 1))+"...";
+    $(this).html(str);
+  });
+}); // Delayed for example only.
+
+let firstGradient = randomNumber(10,90);
+let colors = ["#ffd0d2","#fffdd0","#d0fffd","#d0d2ff"];
+    $(".grid").children('div').each(function(){   
+        $(this).find('.grad-filter').css(
+            "background", "linear-gradient(141deg, "+colors[randomNumber(0,4)]+" "+firstGradient+"%, "+colors[randomNumber(0,4)] + ")"
+        );
+    });
+    function randomNumber(min,max){
+        return Math.floor((Math.random() * max) + min);
+    }
+
+  $(document).on('click', '.fa-check', function(e){
+    var csrftoken = getCookie('csrftoken');
+    var movie_id = $(this).attr('value');
+    var URL = "/watched/" + movie_id + "/";
+    e.preventDefault();
+    var grad = $(this).closest('div')
+          .closest('.movie-img')
+          .find('.grad-filter');
+
+    var check_icon = $(this).closest('li')
+    console.log(URL);
+    $.ajax({
+      type: 'POST',
+      url: URL,
+      data: {
+        'csrfmiddlewaretoken': csrftoken,
+        'movie_id': movie_id,
+      },
+      success: function(data) {
+        if (data['watched'] == true) {
+          grad.css('display', 'block');
+          check_icon.html('<i class="fas fa-times" aria-hidden"true" value=' + movie_id + '></i>')
+        }
+        console.log(data['watched']);
+      }
+    })
+  });
+
+  $(document).on('click', '.fa-times', function(e){
+    var csrftoken = getCookie('csrftoken');
+    var movie_id = $(this).attr('value');
+    var URL = "/unwatched/" + movie_id + "/";
+    e.preventDefault();
+    var grad = $(this).closest('div')
+          .closest('.movie-img')
+          .find('.grad-filter');
+    
+    var check_icon = $(this).closest('li');
+    console.log(URL);
+    $.ajax({
+      type: 'POST',
+      url: URL,
+      data: {
+        'csrfmiddlewaretoken': csrftoken,
+        'movie_id': movie_id,
+      },
+      success: function(data) {
+        if (data['watched'] == false) {
+          grad.css('display', 'none');
+          check_icon.html("<i class='fas fa-check' aria-hidden='true' value=" + movie_id + "></i>");
+        }
+        console.log(data['watched']);
+        
+      }
+    })
+  });
+
+  /* When the user clicks on the button,
+  toggle between hiding and showing the dropdown content */
+  $(document).on('click', '.fa-plus', function(){
+    var dropdown_ = $(this).closest('li').find('#myDropdown')
+    console.log(document.getElementById("myDropdown").classList);
+    dropdown_.toggle("show");
+  });
+
+  $(document).on('click', '.watchlist_to_add', function(){
+    var watchlist_id = $(this).attr('name');
+    var movie_id = $(this).attr('value');
+    var csrftoken = getCookie('csrftoken');
+    var URL = '/add_to_watchlist/' + movie_id + '/' + watchlist_id + '/';
+    $.ajax({
+      type: 'POST',
+      url: URL,
+      data: {
+        'csrfmiddlewaretoken': csrftoken,
+        'movie_id': movie_id,
+        'watchlist_id': watchlist_id,
+      },
+      success: function(data) {
+        console.log(data['added']);
+      }
+    });
+  });
+
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.fa-plus')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        console.log(openDropdown.classList);
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+  
+  $(document).on('click', '.fa-play', function(){
+    var overlay_to_visible = $(this).closest('.overlay-row')
+    var trailer_div = $(this).closest('.movie-img').find('.trailer_div');
+    trailer_div.css('display', 'flex');
+    overlay_to_visible.css('display', 'none');
+  });
+
+  $(document).on('click', '.fa-long-arrow-alt-left', function(){
+    var overlay_to_visible = $(this).closest('.movie-img').find('.overlay-row')
+    var trailer_div = $(this).closest('.movie-img').find('.trailer_div');
+    var iframe = $(this).closest('.trailer_div').find('#youtube_video');
+    var src = iframe.attr('src');
+    iframe.attr('src', src);
+    trailer_div.css('display', 'none');
+    overlay_to_visible.css('display', 'block');
+  });
+</script>
+
+{% endblock %}
